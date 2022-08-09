@@ -1,0 +1,51 @@
+type Query
+{
+    getStoreInformation (store_id: Int!): GetStoreInformation @resolver(class: "Core\\AbstractStore\\Model\\Resolver\\StoreInformation") @doc(description: "Details about a single store")
+}
+
+type GetStoreInformation {
+    id: Int @doc(description: "Store Id")
+    name: String @doc(description: "Sore name")
+    store_code: String @doc(description: "Store code")
+    store_type: String @doc(description: "Store type")
+    is_active: Boolean @doc(description: "Is active")
+    address: StoreAddress @doc(description: "Store Address")
+    opening_hours: [OpeningHoursData] @doc(description: "Store Opening Hours")
+    store_pickup: StorePickupData @doc(description: "Store Pickup")
+    allow_ship_from_store: Boolean @doc(description: "Is Ship from Store is allowed")
+    image: String @doc(description: "Store Image")
+    position: Int @doc(description: "Position")
+    allow_pick_at_store: Boolean @doc(description: "Is Store Pickup Allowed")
+    display_as_store_information: Boolean @doc(description: "Store Information Display")
+}
+
+type OpeningHoursData @doc(description: "Opening Hours Information") {
+    day: String @doc(description: "Day Details")
+    open: String @doc(description: "From Details")
+    close: String @doc(description: "To Details")
+}
+
+type StorePickupData @doc(description: "Store Pickup Information") {
+    store_id: Int @doc(description: "Store ID")
+    allow_ispu: Boolean @doc(description: "Allow Store Pickup")
+    allow_sts: Boolean @doc(description: "Allow Ship from Store")
+}
+
+type StoreAddress {
+    building: String @doc(description: "Building name")
+    street_number: String @doc(description: "Street number")
+    soi: String @doc(description: "SOI")
+    street: String @doc(description: "Street name")
+    region_id: Int @doc(description: "Region id")
+    region: String @doc(description: "Region name")
+    district_id: Int @doc(description: "District Id")
+    district: String @doc(description: "District name")
+    sub_district_id: Int @doc(description: "Sub District id")
+    sub_district: String @doc(description: "Sub district name")
+    city: String @doc(description: "city name")
+    post_code: String @doc(description: "post code")
+    country_code: String @doc(description: "Country code")
+    contact_number: String @doc(description: "Contact number")
+    latitude: String @doc(description: "Latitude")
+    longitude: String @doc(description: "Longitude")
+}
